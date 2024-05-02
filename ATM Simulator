@@ -1,0 +1,55 @@
+class ATM:
+    def __init__(self):
+        self.balance = 10000  # Default balance
+
+    def check_balance(self):
+        return f"Your current balance is Rs.{self.balance}"
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            return "Insufficient Balance"
+        else:
+            self.balance -= amount
+            return f"Withdrawn Rs.{amount}. Remaining balance is Rs.{self.balance}"
+
+    def deposit(self, amount):
+        self.balance += amount
+        return f"Deposited Rs.{amount}. Your current balance is Rs.{self.balance}"
+
+
+def main():
+    atm = ATM()
+    print("***** Welcome To ATM Machine Simulator *****")
+    pin = input("\nEnter Your Pin: ")
+
+    # Dummy pin verification
+    if pin != "65566":
+        print("Invalid PIN. Exiting...")
+        return
+
+    while True:
+        print("\nOptions you can Exercise are:")
+        print("1) Balance")
+        print("2) Withdraw")
+        print("3) Deposit")
+        print("4) Exit")
+
+        choice = input("\nSelect Your Transaction from the above options: ")
+
+        if choice == '1':
+            print(atm.check_balance())
+        elif choice == '2':
+            amount = int(input("Enter Amount: "))
+            print(atm.withdraw(amount))
+        elif choice == '3':
+            amount = int(input("Enter Amount: "))
+            print(atm.deposit(amount))
+        elif choice == '4':
+            print("Thank you for using the ATM Simulator. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please choose a valid option.")
+
+
+if __name__ == "__main__":
+    main()
